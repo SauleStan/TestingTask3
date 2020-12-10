@@ -2,7 +2,7 @@
 const form = document.getElementById("form");
 const name = document.getElementById("fname");
 const surname = document.getElementById("lname");
-const personal_identification_code = document.getElementById(
+const pid = document.getElementById(
   "pid"
 );
 const gender = document.getElementById("gender");
@@ -25,7 +25,7 @@ const addStudent = (e) => {
     id: Date.now(),
     name: document.getElementById("fname").value,
     surname: document.getElementById("lname").value,
-    personal_identification_code: document.getElementById(
+    pid: document.getElementById(
       "pid"
     ).value,
     gender: document.getElementById("male").checked ? "male" : "female",
@@ -68,11 +68,11 @@ function validateForm() {
     surname.style.borderColor = "";
   }
 
-  if (personal_identification_code.value === "") {
-    personal_identification_code.style.borderColor = "red";
+  if (pid.value === "") {
+    pid.borderColor = "red";
     return false;
   } else {
-    personal_identification_code.style.borderColor = "";
+    pid.borderColor = "";
   }
 
   gender_selected = document.querySelector('input[name="gender"]:checked')?.value
@@ -81,7 +81,11 @@ function validateForm() {
     alert("Select your gender");
     return false;
   } else {
-    gender.style.color = "black";
+    if (checksum()) {
+      gender.style.color = "black";
+    } else {
+      alert("Invalid personal identification code");
+    }
   }
 
   if (address.value === "") {
@@ -98,7 +102,7 @@ function validateForm() {
     phone.style.borderColor = "";
   }
 
-  if (program.value == ""){
+  if (program.value == "") {
     program.style.borderColor = "red";
     return false;
   } else {
@@ -106,4 +110,45 @@ function validateForm() {
   }
 
   return true;
+}
+
+// Checks whether personal id code is valid
+function checksum() {
+  var pid_last_chr = pid.value.charAt(10);
+  var C = pid.value.charAt(0) * 1 +
+    pid.value.charAt(1) * 2 +
+    pid.value.charAt(2) * 3 +
+    pid.value.charAt(3) * 4 +
+    pid.value.charAt(4) * 5 +
+    pid.value.charAt(5) * 6 +
+    pid.value.charAt(6) * 7 +
+    pid.value.charAt(7) * 8 +
+    pid.value.charAt(8) * 9 +
+    pid.value.charAt(9) * 1
+
+  C = C % 11
+
+  if (C >= 10) {
+    var S = pid.value.charAt(0) * 3 +
+      pid.value.charAt(1) * 4 +
+      pid.value.charAt(2) * 5 +
+      pid.value.charAt(3) * 6 +
+      pid.value.charAt(4) * 7 +
+      pid.value.charAt(5) * 8 +
+      pid.value.charAt(6) * 9 +
+      pid.value.charAt(7) * 1 +
+      pid.value.charAt(8) * 2 +
+      pid.value.charAt(9) * 3
+
+    S = S % 11
+
+    if (S !== 10) {
+      return pid_last_chr == S;
+    } else {
+      return pid_last_chr == 0;
+    }
+  } else {
+    return pid_last_chr == C;
+  }
+
 }

@@ -37,7 +37,13 @@ const addStudent = (e) => {
       : "online",
   };
 
-  students.push(student);
+  // Checks if there is a student with same pid
+  if (!search(student.pid, students)) {
+    students.push(student);
+  } else {
+    alert("Student with this personal id already exists");
+  }
+
   document.forms[0].reset(); // clear form
   // document.querySelector('form').reset()
 
@@ -72,7 +78,12 @@ function validateForm() {
     pid.borderColor = "red";
     return false;
   } else {
-    pid.borderColor = "";
+    if (checksum()) {
+      pid.borderColor = "";
+    } else {
+      alert("Invalid personal identification code");
+      return false;
+    }
   }
 
   gender_selected = document.querySelector('input[name="gender"]:checked')?.value
@@ -81,10 +92,11 @@ function validateForm() {
     alert("Select your gender");
     return false;
   } else {
-    if (checksum()) {
+    if (verifyGender()) {
       gender.style.color = "black";
     } else {
-      alert("Invalid personal identification code");
+      alert("Selected gender doesn't match personal id code");
+      return false;
     }
   }
 
@@ -151,4 +163,34 @@ function checksum() {
     return pid_last_chr == C;
   }
 
+}
+
+// Searches given array for a value
+function search(nameKey, myArray) {
+  for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i].pid === nameKey) {
+      return true;
+    }
+  }
+}
+
+// Checks if gender coincides with the one in the personal id code
+function verifyGender() {
+  gender_selected = document.querySelector('input[name="gender"]:checked')?.value
+  if (gender_selected == "male") {
+    if (pid.value.charAt(0) == 3 ||
+    pid.value.charAt(0) == 5) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  if (gender_selected == "female") {
+    if (pid.value.charAt(0) == 4 ||
+    pid.value.charAt(0) == 6) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

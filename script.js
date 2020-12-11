@@ -16,10 +16,12 @@ let students = [];
 const addStudent = (e) => {
   e.preventDefault(); // to stop the form from submitting
   let pre_error = document.querySelector("#error pre");
+  let pre = document.querySelector("#msg pre");
+  pre.textContent = ""
   pre_error.textContent = "";
 
   if (!validateForm()) {
-    pre_error.textContent = "error submitting the form";
+    pre_error.textContent = "Error submitting the form";
     // console.log(validateForm());
     return false;
   }
@@ -52,7 +54,6 @@ const addStudent = (e) => {
 
   // Displays student data
   console.log("added", { students });
-  let pre = document.querySelector("#msg pre");
   pre.textContent = "Form submitted successfully!"
   // pre.textContent = "\n" + JSON.stringify(students, "\t", 2);
 

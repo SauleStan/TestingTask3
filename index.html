@@ -1,115 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Automated testing</title>
-    <link rel="shortcut icon" href="#" />
-    <script defer src="script.js"></script>
-    
-  </head>
-  <body>
-    <form id="form" action="/" method="GET">
-      <!-- Name -->
-      <div>
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname" />
-      </div>
-      <br />
 
-      <!-- Last Name -->
-      <div>
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname"/>
-      </div>
-      <br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automated testing</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="#" />
+  <script defer src="script.js"></script>
+</head>
 
-      <!-- Personal identification code -->
-      <div>
-        <label for="pid">Personal identification code:</label>
-        <input
-          type="number"
-          id="pid"
-          name="pid"
-          onKeyPress="if(this.value.length==11) return false;"
-        />
-      </div>
-      <br />
-
-      <!-- Radio gender -->
-      <div id="gender" name="gender">
-        <label for="gender" id="gender" >Gender:</label>
-        <input type="radio" id="male" name="gender" value="male" />
-        <label for="male">Male</label>
-        <input type="radio" id="female" name="gender" value="female" />
-        <label for="female">Female</label>
-        <span id="result"></span>
-      </div>
-      <br />
-
-      <!--  Address -->
-      <div>
-        <label for="address">Address</label>
-        <input type="text" id="address" name="address"/>
-      </div>
-      <br />
-
-      <!--  Phone number -->
-      <div>
-        <label for="phone">Phone number</label>
-        <input type="number" id="phone" name="phone"/>
-      </div>
-      <br />
-
-      <!--  Study program -->
-      <div>
-        <label for="program">Study program:</label>
-        <select id="program" name="program" >
-          <option value="" selected disabled hidden>Choose here</option>
-          <option value="computer-engineering">Computer Engineering</option>
-          <option value="computer-systems">Computer Systems</option>
-          <option value="telecommunications-systems">
-            Telecommunications Systems
-          </option>
-          <option value="electronics-engineering">
-            Electronics Engineering
-          </option>
-          <option value="information-systems">Information Systems</option>
-          <option value="software-engineering">Software Engineering</option>
-        </select>
-      </div>
-      <br />
-
-      <!--  Form of studies -->
-      <div id="formOfStudies" name="formOfStudies">
-        <label for="formOfStudies">Form of studies:</label>
-        <input
-          type="radio"
-          name="formStudies"
-          value="regular"
-          checked="checked"
-          id="regular"
-        />
-        <label for="regular">Regular</label>
-        <input type="radio" name="formStudies" value="online" id="online"/>
-        <label for="online">Online</label>
+<body>
+  <div class="container">
+      <h3 class="container-heading">login form</h3>
+      <form class="form" id="form" action="/" method="GET">
+        <!-- Name -->
+        <div>
+          <label for="fname">First name:</label>
+          <input type="text" id="fname" name="fname" />
+        </div>
         <br />
-      </div>
-      <br />
 
-      <!--  Submit button -->
-      <button id="btn" type="submit">Submit</button>
+        <!-- Last Name -->
+        <div>
+          <label for="lname">Last name:</label>
+          <input type="text" id="lname" name="lname" />
+        </div>
+        <br />
 
-      <!-- Show student data -->
-      <div id="msg" style="color: green">
-        <pre></pre>
-      </div>
+        <!-- Personal identification code -->
+        <div>
+          <label for="pid">Personal identification code:</label>
+          <input type="number" id="pid" name="pid" onKeyPress="if(this.value.length==11) return false;" />
+        </div>
+        <br />
 
-      <div id="error" style="color: red">
-        <pre></pre>
-      </div>
-    </form>
+        <!-- Radio gender -->
+        <div id="gender" name="gender">
+          <label for="gender" id="gender">Gender:</label>
+          <input type="radio" id="male" name="gender" value="male" />
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" value="female" />
+          <label for="female">Female</label>
+          <span id="result"></span>
+        </div>
+        <br />
 
-    
-  </body>
+        <!--  Address -->
+        <div>
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" />
+        </div>
+        <br />
+
+        <!--  Phone number -->
+        <div>
+          <label for="phone">Phone number</label>
+          <input type="number" id="phone" name="phone" />
+        </div>
+        <br />
+
+        <!--  Study program -->
+        <div>
+          <label for="program">Study program:</label>
+          <select id="program" name="program">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option value="computer-engineering">Computer Engineering</option>
+            <option value="computer-systems">Computer Systems</option>
+            <option value="telecommunications-systems">
+              Telecommunications Systems
+            </option>
+            <option value="electronics-engineering">
+              Electronics Engineering
+            </option>
+            <option value="information-systems">Information Systems</option>
+            <option value="software-engineering">Software Engineering</option>
+          </select>
+        </div>
+        <br />
+
+        <!--  Form of studies -->
+        <div id="formOfStudies" name="formOfStudies">
+          <label for="formOfStudies">Form of studies:</label>
+          <input type="radio" name="formStudies" value="regular" checked="checked" id="regular" />
+          <label for="regular">Regular</label>
+          <input type="radio" name="formStudies" value="online" id="online" />
+          <label for="online">Online</label>
+          <br />
+        </div>
+        <br />
+
+        <!--  Submit button -->
+        <button id="btn" type="submit" class="form-submit">Submit</button>
+
+        <!-- Show student data -->
+        <div class="message" id="msg" style="color: green">
+          <pre></pre>
+        </div>
+
+        <div class="message" id="error" style="color: red">
+          <pre></pre>
+        </div>
+      </form>
+
+    </div>
+  
+</body>
+
 </html>

@@ -15,9 +15,12 @@ let students = [];
 
 const addStudent = (e) => {
   e.preventDefault(); // to stop the form from submitting
+  let pre_error = document.querySelector("#error pre");
+  pre_error.textContent = "";
 
   if (!validateForm()) {
-    console.log(validateForm());
+    pre_error.textContent = "error submitting the form";
+    // console.log(validateForm());
     return false;
   }
 
@@ -47,9 +50,11 @@ const addStudent = (e) => {
   document.forms[0].reset(); // clear form
   // document.querySelector('form').reset()
 
+  // Displays student data
   console.log("added", { students });
   let pre = document.querySelector("#msg pre");
-  pre.textContent = "\n" + JSON.stringify(students, "\t", 2);
+  pre.textContent = "Form submitted successfully!"
+  // pre.textContent = "\n" + JSON.stringify(students, "\t", 2);
 
   // saving to local storage (can find local storage in Application -> local storage)
   localStorage.setItem("StudentList", JSON.stringify(students));
@@ -139,6 +144,7 @@ function checksum() {
     pid.value.charAt(9) * 1
 
   C = C % 11
+  console.log("C: " + C);
 
   if (C >= 10) {
     var S = pid.value.charAt(0) * 3 +
@@ -179,7 +185,7 @@ function verifyGender() {
   gender_selected = document.querySelector('input[name="gender"]:checked')?.value
   if (gender_selected == "male") {
     if (pid.value.charAt(0) == 3 ||
-    pid.value.charAt(0) == 5) {
+      pid.value.charAt(0) == 5) {
       return true;
     } else {
       return false;
@@ -187,7 +193,7 @@ function verifyGender() {
   }
   if (gender_selected == "female") {
     if (pid.value.charAt(0) == 4 ||
-    pid.value.charAt(0) == 6) {
+      pid.value.charAt(0) == 6) {
       return true;
     } else {
       return false;
